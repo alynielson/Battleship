@@ -27,8 +27,6 @@ namespace Battleship
             player2 = new Player();
             player1.GetPlayerName("Player 1");
             player2.GetPlayerName("Player 2");
-            player1.board.DisplayInitialBoard();
-            
         }
 
         

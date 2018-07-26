@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Battleship
 {
-    class Destroyer : Ship
+    class AircraftCarrier : Ship
     {
-        public Destroyer()
+        public AircraftCarrier()
         {
-            size = 2;
+            size = 5;
         }
     }
 }

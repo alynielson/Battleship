@@ -11,11 +11,19 @@ namespace Battleship
         string[,] boardSpots;
         public static int width;
         public static int height;
-        public static int displayWidth = (width + 2);
+        public static int displayWidth;
+        public Destroyer destroyer;
+        public Submarine submarine;
+        public Battleship battleship;
+        public AircraftCarrier aircraftCarrier;
 
         public Board()
         {
-            GetBoardSize();   
+            GetBoardSize();
+            destroyer = new Destroyer();
+            submarine = new Submarine();
+            battleship = new Battleship();
+            aircraftCarrier = new AircraftCarrier();
         }
 
         public void GetBoardSize()

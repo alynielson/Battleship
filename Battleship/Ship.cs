@@ -8,7 +8,7 @@ namespace Battleship
 {
     class Ship
     {
-        
+        public int size;
 
     }
 }
