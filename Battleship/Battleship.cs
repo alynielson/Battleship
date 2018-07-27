@@ -10,7 +10,9 @@ namespace Battleship
     {
         public Battleship()
         {
+            name = "Battleship";
             size = 4;
         }
+        
     }
 }

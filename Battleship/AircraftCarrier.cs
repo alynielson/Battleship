@@ -10,7 +10,10 @@ namespace Battleship
     {
         public AircraftCarrier()
         {
+            name = "Aircraft Carrier";
             size = 5;
         }
+
+          
     }
 }

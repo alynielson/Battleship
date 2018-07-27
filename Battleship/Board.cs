@@ -67,10 +67,10 @@ namespace Battleship
             }
         }
 
-        public void DisplayInitialBoard()
+        public void DisplayBoard()
         {
             getDisplayWidth();
-            CreateEmptyBoard();
+            CreateBoard();
             DecideTableCellSize(boardSpots);
             ShowBoard(boardSpots);
         }
@@ -79,25 +79,25 @@ namespace Battleship
             displayWidth = width + 2;
         }
 
-        public void CreateEmptyBoard()
+        public void CreateBoard()
         {
             boardSpots = new string[displayWidth, displayWidth];
-            
-            for (int x=0; x < displayWidth; x++)
+
+            for (int x = 0; x < displayWidth; x++)
+            {
+                for (int y = 0; y < displayWidth; y++)
                 {
-                    for (int y=0; y < displayWidth; y++)
-                    {    
-                        boardSpots[x, y] = "O";
-                    }
+                    boardSpots[x, y] = "O";
                 }
-            boardSpots[0, 0] = "+";
-            for (int x=2; x < displayWidth; x++)
-            {
-                boardSpots[x, 0] = (x-1).ToString();
             }
-            for (int y=2; y < displayWidth; y++)
+            boardSpots[0, 0] = "+";
+            for (int x = 2; x < displayWidth; x++)
             {
-                boardSpots[0, y] = (y-1).ToString();
+                boardSpots[x, 0] = (x - 1).ToString();
+            }
+            for (int y = 2; y < displayWidth; y++)
+            {
+                boardSpots[0, y] = (y - 1).ToString();
             }
             for (int x = 0; x < displayWidth; x++)
             {
@@ -107,40 +107,62 @@ namespace Battleship
             {
                 boardSpots[1, y] = "|";
             }
-            
 
-           
+
+
         }
-        
+
         public void ShowBoard(string[,] board)
         {
             for (int y = 0; y < displayWidth; y++)
             {
                 for (int x = 0; x < displayWidth; x++)
                 {
-                    Console.Write(string.Format("{0}", board[x, y] ));
+                    Console.Write(string.Format("{0}", board[x, y]));
                 }
                 Console.Write(Environment.NewLine);
             }
-            Console.ReadLine();
         }
 
-        public void DecideTableCellSize(string [,] board)
+        public void DecideTableCellSize(string[,] board)
         {
-           for (int x=0; x< displayWidth; x++)
+            for (int x = 0; x < displayWidth; x++)
             {
-                for (int y=0; y< displayWidth; y++)
+                for (int y = 0; y < displayWidth; y++)
                 {
-                    if (board[x,y].Length == 1)
+                    if (board[x, y].Length == 1)
                     {
                         board[x, y] += "  ";
                     }
-                    else if (board[x,y].Length == 2)
+                    else if (board[x, y].Length == 2)
                     {
                         board[x, y] += " ";
                     }
                 }
             }
+        }
+
+        public bool CheckIfShipIsOnTheBoard(int shipStartLocation, int shipSize, string shipOrientation)
+        {
+            bool isValidStartLocation;
+            if (shipStartLocation > width)
+            {
+                isValidStartLocation = false;
+            } 
+            else if (width - shipStartLocation < shipSize - 1)
+            {
+                isValidStartLocation = false;
+            }
+            else
+            {
+                isValidStartLocation = true;
+            }
+            return isValidStartLocation;
+        }
+
+        public void PutShipOnBoard(int startLocation, string orientation) 
+        {
+
         }
     }
 }
