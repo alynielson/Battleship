@@ -13,6 +13,7 @@ namespace Battleship
             Console.WriteLine("Welcome to Battleship!");
             Game newGame = new Game();
             newGame.StartGame();
+            newGame.PlaceShipsInitialDialogue();
             newGame.PlaceShips();
 
         }

@@ -54,12 +54,12 @@ namespace Battleship
             if (orientation == "H")
             {
                 Console.WriteLine("Your " + name + " is located from column " + startRowOrColumn + " to column " + endRowOrColumn + ".");
-                Console.WriteLine("Enter the row number where the ship will be located.");
+                Console.WriteLine("Enter the row number where the " + name + " will be located.");
             }
             else if (orientation == "V")
             {
                 Console.WriteLine("Your " + name + " is located from row " + startRowOrColumn + " to row " + endRowOrColumn + ".");
-                Console.WriteLine("Enter the column number where the ship will be located.");
+                Console.WriteLine("Enter the column number where the " + name + " will be located.");
             }
             string response = Console.ReadLine();
             rowOrColumnAxis2 = 0;

@@ -194,5 +194,35 @@ namespace Battleship
                 }
             }
         }
+
+        public bool CheckIfSpotOccupied(int startLocation, int secondAxisLocation, string orientation, int shipSize)
+        {
+            bool isSpotOccupied = false;
+            int displayLocation = startLocation + 1;
+            int secondAxisDisplayLocation = secondAxisLocation + 1;
+            for (int x = displayLocation; x < displayLocation + shipSize; x++)
+            {
+                if (orientation == "H")
+                {
+                    if (boardSpots[x, secondAxisDisplayLocation] == "S")
+                    {
+                        isSpotOccupied = true;
+                        break;
+                    }   
+                }
+                else if (orientation == "V")
+                {
+                    if (boardSpots[secondAxisDisplayLocation, x] == "S")
+                    {
+                        isSpotOccupied = true;
+                        break;
+                    }
+                }
+            }
+            return isSpotOccupied;
+
+        }
+
+
     }
 }
