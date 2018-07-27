@@ -69,10 +69,14 @@ namespace Battleship
 
         public void DisplayBoard()
         {
-            getDisplayWidth();
-            CreateBoard();
             DecideTableCellSize(boardSpots);
             ShowBoard(boardSpots);
+        }
+
+        public void CreateBoardInitially()
+        {
+            getDisplayWidth();
+            CreateBoard();
         }
         public void getDisplayWidth()
         {
@@ -160,9 +164,35 @@ namespace Battleship
             return isValidStartLocation;
         }
 
-        public void PutShipOnBoard(int startLocation, string orientation) 
+        public bool CheckIfValidSecondAxisLocation(int shipSecondAxisLocation)
         {
+            bool isValidSecondAxisLocation = true;
+            if (shipSecondAxisLocation < 1)
+            {
+                isValidSecondAxisLocation = false;
+            }
+            else if (shipSecondAxisLocation > width)
+            {
+                isValidSecondAxisLocation = false;
+            }
+            return isValidSecondAxisLocation;
+        }
 
+        public void PutShipOnBoard(int startLocation, int secondAxisLocation, string orientation, int shipSize) 
+        {
+            int displayLocation = startLocation + 1;
+            int secondAxisDisplayLocation = secondAxisLocation + 1;
+            for (int x = displayLocation; x < displayLocation + shipSize; x++)
+            {
+                if (orientation == "H")
+                {
+                    boardSpots[x, secondAxisDisplayLocation] = "S";
+                }
+                else if (orientation == "V")
+                {
+                    boardSpots[secondAxisDisplayLocation, x] = "S";
+                }
+            }
         }
     }
 }

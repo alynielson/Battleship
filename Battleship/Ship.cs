@@ -10,6 +10,7 @@ namespace Battleship
     {
         public int size;
         public int startRowOrColumn;
+        public int rowOrColumnAxis2;
         public string orientation;
         public string name;
 
@@ -47,7 +48,30 @@ namespace Battleship
             return startRowOrColumn;
         }
 
-        
+        public int GetSecondAxisLocation()
+        {
+            int endRowOrColumn = startRowOrColumn + (size - 1);
+            if (orientation == "H")
+            {
+                Console.WriteLine("Your " + name + " is located from column " + startRowOrColumn + " to column " + endRowOrColumn + ".");
+                Console.WriteLine("Enter the row number where the ship will be located.");
+            }
+            else if (orientation == "V")
+            {
+                Console.WriteLine("Your " + name + " is located from row " + startRowOrColumn + " to row " + endRowOrColumn + ".");
+                Console.WriteLine("Enter the column number where the ship will be located.");
+            }
+            string response = Console.ReadLine();
+            rowOrColumnAxis2 = 0;
+            bool isNumericAnswer = Int32.TryParse(response, out rowOrColumnAxis2);
+            while (!isNumericAnswer || rowOrColumnAxis2 == 0)
+            {
+                Console.WriteLine("You didn't enter a number! Try again.");
+                response = Console.ReadLine();
+                isNumericAnswer = Int32.TryParse(response, out rowOrColumnAxis2);
+            }
+            return rowOrColumnAxis2;
+        }
         
 
     }

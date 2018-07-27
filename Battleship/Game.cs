@@ -35,13 +35,14 @@ namespace Battleship
             Console.WriteLine(player1.name + ", press any key to continue.");
             Console.ReadLine();
             Console.Clear();
+            player1.board.CreateBoardInitially();
             player1.board.DisplayBoard();
             string orientation = player1.board.destroyer.GetShipOrientation();
             int shipStartLocation = player1.board.destroyer.GetStartingPoint();
             bool isValidStartLocation = player1.board.CheckIfShipIsOnTheBoard(shipStartLocation, player1.board.destroyer.size, orientation);
             while (isValidStartLocation == false)
             {
-                Console.WriteLine("Your ship is not on the board! Try again. Press any key to continue.");
+                Console.WriteLine("Your ship is not on the board! Try again. Press enter to continue.");
                 Console.ReadLine();
                 Console.Clear();
                 player1.board.DisplayBoard();
@@ -49,6 +50,20 @@ namespace Battleship
                 shipStartLocation = player1.board.destroyer.GetStartingPoint();
                 isValidStartLocation = player1.board.CheckIfShipIsOnTheBoard(shipStartLocation, player1.board.destroyer.size, orientation);
             }
+            int shipSecondAxisLocation = player1.board.destroyer.GetSecondAxisLocation();
+            bool isValidSecondAxisLocation = player1.board.CheckIfValidSecondAxisLocation(shipSecondAxisLocation);
+            while (isValidSecondAxisLocation == false)
+            {
+                Console.WriteLine("That choice is not on the board! Try again. Press enter to continue.");
+                Console.ReadLine();
+                Console.Clear();
+                player1.board.DisplayBoard();
+                shipSecondAxisLocation = player1.board.destroyer.GetSecondAxisLocation();
+                isValidSecondAxisLocation = player1.board.CheckIfValidSecondAxisLocation(shipSecondAxisLocation);
+            }
+            int shipSize = player1.board.destroyer.size;
+            player1.board.PutShipOnBoard(shipStartLocation, shipSecondAxisLocation, orientation, shipSize);
+            player1.board.DisplayBoard();
             Console.WriteLine("Ship has been placed! Next ship.");
             Console.ReadLine();
         }
